@@ -1,5 +1,5 @@
 # Authored By : @https://t.me/iamimmanuelraj
-# modified By : @https://t.me/CRUECY
+# modified By : @https://t.me/kotoha_hkll
 
 # Imports
 import os
@@ -33,7 +33,7 @@ xda="https://forum.xda-developers.com/m/cruecy.9792504/"
 ghun="userariii"
 name="ARINDAM BHATTACHARJEE"
 print("\n---------------------------------------")
-print("Options: PixelExperience, Evolution-X")
+print("Options: PixelExperience, Evolution-X, as for spark use evox")
 print("---------------------------------------")
 cos=input("\nEnter customOS name : ")
 scos=cos.lower()
