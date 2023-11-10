@@ -33,7 +33,7 @@ xda="https://forum.xda-developers.com/m/cruecy.9792504/"
 ghun="userariii"
 name="ARINDAM BHATTACHARJEE"
 print("\n---------------------------------------")
-print("Options: PixelExperience, Evolution-X, as for spark use evox")
+print("Options: PixelExperience, Evolution-X, Spark")
 print("---------------------------------------")
 cos=input("\nEnter customOS name : ")
 scos=cos.lower()
