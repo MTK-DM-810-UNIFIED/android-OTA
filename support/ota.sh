@@ -21,7 +21,7 @@ TYPE=$(echo $FILENAME | cut -f4 -d '-')
 VERSION=$(echo $FILENAME | cut -f2 -d '-')
 RELEASE_TAG=${DEVICE}_lineage-${VERSION}_${TIMESTAMP}
 
-URL="https://......../${{FILENAME}"
+URL="https://github.com/MTK-DM-810-UNIFIED/official_devices/releases/download/${{FILENAME}"
 
 response=$(jq -n --arg datetime $TIMESTAMP \
         --arg filename $FILENAME \
