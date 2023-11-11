@@ -1,7 +1,12 @@
 #!/bin/bash
 
 if [ -z "$1" ] ; then
-    echo "Usage: $0 <ota zip>"
+    echo "Usage: $0 <ota zip> <ota file uri>"
+    exit 1
+fi
+
+if [ -z "$2" ] ; then
+    echo "Usage: $0 <ota zip> <ota file uri>"
     exit 1
 fi
 
@@ -21,7 +26,7 @@ TYPE=$(echo $FILENAME | cut -f4 -d '-')
 VERSION=$(echo $FILENAME | cut -f2 -d '-')
 RELEASE_TAG=${DEVICE}_lineage-${VERSION}_${TIMESTAMP}
 
-URL="https://github.com/MTK-DM-810-UNIFIED/official_devices/releases/download/${{FILENAME}"
+URL="$2"
 
 response=$(jq -n --arg datetime $TIMESTAMP \
         --arg filename $FILENAME \
