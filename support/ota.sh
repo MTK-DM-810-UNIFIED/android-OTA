@@ -17,14 +17,14 @@ SDK_LEVEL=$(echo "$METADATA" | grep post-sdk-level | cut -f2 -d '=')
 TIMESTAMP=$(echo "$METADATA" | grep post-timestamp | cut -f2 -d '=')
 
 FILENAME=$(basename $ROM)
-DEVICE=$(echo $FILENAME | cut -f5 -d '-' | cut -f1 -d".")
-ROMTYPE=$(echo $FILENAME | cut -f4 -d '-')
-DATE=$(echo $FILENAME | cut -f3 -d '-')
+DEVICE=$(echo $FILENAME | cut -f4 -d '-')
+ROMTYPE=$(echo $FILENAME | cut -f3 -d '-')
+DATE=$(echo $FILENAME | cut -f5 -d '-')
 ID=$(echo ${TIMESTAMP}${DEVICE}${SDK_LEVEL} | sha256sum | cut -f 1 -d ' ')
-SIZE=$(du -b $ROM | cut -f1 -d '  ')
-TYPE=$(echo $FILENAME | cut -f4 -d '-')
-VERSION=$(echo $FILENAME | cut -f2 -d '-')
-RELEASE_TAG=${DEVICE}_lineage-${VERSION}_${TIMESTAMP}
+SIZE=$(du -b $ROM | cut -f1 -d ' ')
+TYPE=$(echo $FILENAME | cut -f6 -d '-' | cut -f1 -d '.' )
+VERSION=$(echo $FILENAME | cut -f2 -d '-' | cut -f1 -d '.')
+RELEASE_TAG=${DEVICE}_spark-${VERSION}_${TIMESTAMP}
 
 URL="$2"
 
