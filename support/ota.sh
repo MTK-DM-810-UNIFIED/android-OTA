@@ -21,9 +21,10 @@ DEVICE=$(echo $FILENAME | cut -f4 -d '-')
 ROMTYPE=$(echo $FILENAME | cut -f3 -d '-')
 DATE=$(echo $FILENAME | cut -f5 -d '-')
 ID=$(echo ${TIMESTAMP}${DEVICE}${SDK_LEVEL} | sha256sum | cut -f 1 -d ' ')
-SIZE=$(du -b $ROM | cut -f1 -d ' ')
+SIZE=$(du -b "$ROM" | cut -f1)
+MD5HASH=$(md5sum "$ROM" | cut -d' ' -f1)
 TYPE=$(echo $FILENAME | cut -f6 -d '-' | cut -f1 -d '.' )
-VERSION=$(echo $FILENAME | cut -f2 -d '-' | cut -f1 -d '.')
+VERSION=$(echo "$FILENAME" | awk -F'-' '{print $2}')
 RELEASE_TAG=${DEVICE}_spark-${VERSION}_${TIMESTAMP}
 
 URL="$2"
@@ -31,6 +32,7 @@ URL="$2"
 response=$(jq -n --arg datetime $TIMESTAMP \
         --arg filename $FILENAME \
         --arg id $ID \
+        --arg filehash $MD5HASH \
         --arg romtype $ROMTYPE \
         --arg size $SIZE \
         --arg url $URL \
@@ -38,3 +40,6 @@ response=$(jq -n --arg datetime $TIMESTAMP \
         '$ARGS.named'
 )
 wrapped_response=$(jq -n --argjson response "[$response]" '$ARGS.named')
+
+# Save the wrapped_response to a JSON file
+echo "$wrapped_response" > "${DEVICE}.json"
